@@ -1,6 +1,7 @@
 {
   "package": "com.yor42.solarapocalypse.mixins",
   "compatibilityLevel": "JAVA_8",
+  "refmap":"solarapocalypse.refmap.json",
   "required": true,
   "minVersion": "0.8",
   "injectors": {
