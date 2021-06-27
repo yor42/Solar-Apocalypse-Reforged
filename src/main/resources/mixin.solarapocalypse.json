@@ -1,10 +1,11 @@
 {
   "package": "com.yor42.solarapocalypse.mixins",
-  "refmap": "mixins.solarapocalypse.refmap.json",
-  "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_8",
   "required": true,
   "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
   "mixins": [
     "BambooBlockGettingDestroyed",
     "BerryBushDiesInSunlight",

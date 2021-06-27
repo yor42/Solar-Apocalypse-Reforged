@@ -18,8 +18,9 @@ public abstract class GrassAndMyceliumDies {
     private static void onCanBeGrass(BlockState state, IWorldReader world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         BlockPos blockPos = pos.above();
         World realWorld = (World) world;
-        if (!MathUtils.shouldExcuteStage(realWorld, MathUtils.STAGE.STAGE_1) || realWorld.isNight() || !realWorld.canSeeSky(blockPos)) return;
-        cir.setReturnValue(false);
+        if (MathUtils.shouldExcuteStage(realWorld, MathUtils.STAGE.STAGE_1) && !realWorld.isNight() && realWorld.canSeeSky(blockPos)) {
+            cir.setReturnValue(false);
+        }
     }
 
 }
