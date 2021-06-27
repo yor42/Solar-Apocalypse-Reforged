@@ -18,7 +18,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'maven-publish'
 
-version = '0.9'
+version = '1.0'
 group = 'com.yor42.solarapocalypse' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.modid
 

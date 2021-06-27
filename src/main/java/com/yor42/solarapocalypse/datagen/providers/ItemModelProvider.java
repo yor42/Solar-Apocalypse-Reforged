@@ -15,6 +15,7 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
     @Override
     protected void registerModels() {
         buildSimpleBlockModel("dust");
+        withExistingParent("pandora_totem", modLoc("block/pandora_totem_off"));
     }
 
     public void buildSimpleBlockModel(String name){

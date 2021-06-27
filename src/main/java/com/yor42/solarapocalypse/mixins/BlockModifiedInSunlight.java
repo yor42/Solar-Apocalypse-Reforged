@@ -1,6 +1,6 @@
 package com.yor42.solarapocalypse.mixins;
 
-import com.yor42.solarapocalypse.MathUtils;
+import com.yor42.solarapocalypse.utils.MathUtils;
 import com.yor42.solarapocalypse.SolApocalypseConfig;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Properties;
 import java.util.Random;
 
 @Mixin(AbstractBlock.class)
@@ -36,7 +35,7 @@ public class BlockModifiedInSunlight {
     private void onRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci){
         BlockPos blockPos = pos.above();
         if (world.isNight() || world.isRaining() || !world.canSeeSky(blockPos)) return;
-        if (MathUtils.isWorldOldEnough(world, MathUtils.STAGE.STAGE_2)) {
+        if (MathUtils.shouldExcuteStage(world, MathUtils.STAGE.STAGE_2)) {
             if (state.getMaterial().isFlammable() && world.getBlockState(blockPos).isAir()) {
                 BlockState blockState = AbstractFireBlock.getState(world, blockPos);
                 world.setBlock(blockPos, blockState, 2 | 8);
@@ -52,7 +51,7 @@ public class BlockModifiedInSunlight {
             }
         }
         if (state.getBlock() == Blocks.COARSE_DIRT && SolApocalypseConfig.CONFIG.STAGE_3_5.get()>=0.0) {
-            if (MathUtils.isWorldOldEnough(world, MathUtils.STAGE.STAGE_3_5)) {
+            if (MathUtils.shouldExcuteStage(world, MathUtils.STAGE.STAGE_3_5)) {
                 world.setBlock(pos, Blocks.SAND.defaultBlockState(),2);
             }
         }

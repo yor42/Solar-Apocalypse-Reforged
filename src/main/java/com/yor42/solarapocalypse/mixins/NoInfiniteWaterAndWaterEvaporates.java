@@ -1,6 +1,6 @@
 package com.yor42.solarapocalypse.mixins;
 
-import com.yor42.solarapocalypse.MathUtils;
+import com.yor42.solarapocalypse.utils.MathUtils;
 import com.yor42.solarapocalypse.SolApocalypseConfig;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -30,7 +30,7 @@ public abstract class NoInfiniteWaterAndWaterEvaporates extends Fluid {
     @Override
     protected void randomTick(World world, BlockPos pos, FluidState state, Random random) {
         BlockPos UpPos = pos.above();
-        if(!MathUtils.isWorldOldEnough(world, MathUtils.STAGE.STAGE_2) || !SolApocalypseConfig.CONFIG.IsWaterfinite.get() || state.getType() != Fluids.WATER || world.isNight() || world.isRaining() || !world.canSeeSky(UpPos)){
+        if(!MathUtils.shouldExcuteStage(world, MathUtils.STAGE.STAGE_2) || !SolApocalypseConfig.CONFIG.IsWaterfinite.get() || state.getType() != Fluids.WATER || world.isNight() || world.isRaining() || !world.canSeeSky(UpPos)){
             return;
         }
         BlockState blockState = world.getBlockState(pos);

@@ -1,6 +1,6 @@
 package com.yor42.solarapocalypse.mixins;
 
-import com.yor42.solarapocalypse.MathUtils;
+import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IceBlock;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +23,7 @@ public abstract class IceMelts {
     @Inject(method = "randomTick", at = @At("HEAD"))
     private void onRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         BlockPos blockPos = pos.above();
-        if (!MathUtils.isWorldOldEnough(world, MathUtils.STAGE.STAGE_2) || world.isNight() || world.isRaining() || !world.canSeeSky(blockPos)) return;
+        if (!MathUtils.shouldExcuteStage(world, MathUtils.STAGE.STAGE_2) || world.isNight() || world.isRaining() || !world.canSeeSky(blockPos)) return;
         melt(state, world, pos);
     }
 

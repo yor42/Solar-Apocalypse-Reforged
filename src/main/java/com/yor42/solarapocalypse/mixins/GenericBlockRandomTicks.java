@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class GenericBlockRandomTicks {
 
     @Inject(method = "isRandomlyTicking", at = @At("HEAD"), cancellable = true)
-    private void onIsRandomlyTicking(BlockState state, CallbackInfoReturnable<Boolean> cir) {
+    private void onisRandomlyTicking(BlockState state, CallbackInfoReturnable<Boolean> cir) {
         if (state.getBlock() == Blocks.CLAY || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.GRASS_PATH || state.getBlock() == Blocks.COARSE_DIRT || state.getBlock() instanceof PumpkinBlock) cir.setReturnValue(true);
     }
 }

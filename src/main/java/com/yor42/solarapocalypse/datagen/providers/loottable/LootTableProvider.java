@@ -13,8 +13,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class LootTableProvider extends net.minecraft.data.LootTableProvider {
-    public LootTableProvider(DataGenerator p_i50789_1_) {
-        super(p_i50789_1_);
+    public LootTableProvider(DataGenerator dataGeneratorIn) {
+        super(dataGeneratorIn);
     }
 
     @Override

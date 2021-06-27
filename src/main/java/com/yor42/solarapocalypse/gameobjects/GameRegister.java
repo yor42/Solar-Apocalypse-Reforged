@@ -1,10 +1,7 @@
-package com.yor42.solarapocalypse;
+package com.yor42.solarapocalypse.gameobjects;
 
 import com.yor42.solarapocalypse.Constants;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.FallingBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
@@ -12,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -19,6 +17,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 import static com.yor42.solarapocalypse.Main.SA_GROUP;
 
@@ -34,6 +33,16 @@ public class GameRegister {
 
     public static Block DUSTBLOCK = new FallingBlock(AbstractBlock.Properties.of(Material.SAND, DyeColor.YELLOW).strength(0.5F).sound(SoundType.SAND));
     public static RegistryObject<Block> DUSTBLOCK_REGISTRY = register("dust", ()-> DUSTBLOCK, SA_GROUP);
+
+    public static Block PANDORAS_TOTEM = new BlockPandorasTotem(AbstractBlock.Properties.of(Material.STONE, DyeColor.BLACK).strength(50.0F, 3600000.0F).sound(SoundType.STONE).lightLevel(activeBlockEmission(15)));
+
+    private static ToIntFunction<BlockState> activeBlockEmission(int brightness) {
+        return (state) -> {
+            return state.getValue(BlockPandorasTotem.ACTIVE) ? brightness : 0;
+        };
+    }
+
+    public static RegistryObject<Block> PANDORAS_TOTEM_REGISTRY = register("pandora_totem", ()-> PANDORAS_TOTEM, SA_GROUP);
 
     public static class CustomEffect extends Effect{
         protected CustomEffect(EffectType effectType, int color) {

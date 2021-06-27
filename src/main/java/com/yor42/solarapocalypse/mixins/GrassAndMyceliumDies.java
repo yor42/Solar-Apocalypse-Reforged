@@ -1,7 +1,6 @@
 package com.yor42.solarapocalypse.mixins;
 
-import com.yor42.solarapocalypse.MathUtils;
-import com.yor42.solarapocalypse.SolApocalypseConfig;
+import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SpreadableSnowyDirtBlock;
 import net.minecraft.util.math.BlockPos;
@@ -19,7 +18,7 @@ public abstract class GrassAndMyceliumDies {
     private static void onCanBeGrass(BlockState state, IWorldReader world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         BlockPos blockPos = pos.above();
         World realWorld = (World) world;
-        if (!MathUtils.isWorldOldEnough(realWorld, MathUtils.STAGE.STAGE_1) || realWorld.isNight() || !realWorld.canSeeSky(blockPos)) return;
+        if (!MathUtils.shouldExcuteStage(realWorld, MathUtils.STAGE.STAGE_1) || realWorld.isNight() || !realWorld.canSeeSky(blockPos)) return;
         cir.setReturnValue(false);
     }
 

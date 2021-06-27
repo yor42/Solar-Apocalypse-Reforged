@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "solarapocalypse:block/pandora_totem_bottom",
+    "north": "solarapocalypse:block/pandora_totem_side_on",
+    "south": "solarapocalypse:block/pandora_totem_side_on",
+    "east": "solarapocalypse:block/pandora_totem_side_on",
+    "west": "solarapocalypse:block/pandora_totem_side_on",
+    "up": "solarapocalypse:block/pandora_totem_top_on",
+    "down": "solarapocalypse:block/pandora_totem_bottom"
+  }
+}

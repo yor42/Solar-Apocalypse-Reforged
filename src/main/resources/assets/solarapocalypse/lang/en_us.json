@@ -1,4 +1,12 @@
 {
   "block.solarapocalypse.dust": "Burnt Dust",
-  "effect.solarapocalypse.sunscreen": "Sun Screen"
+  "effect.solarapocalypse.sunscreen": "Sun Screen",
+  "message.apocalypsestarted": "%1$s just started solar apocalypse! you have %2$s days to collect resource before they start to disappear; Good Luck!",
+  "message.apocalypse_already_triggered": "Solar Apocalypse is already started, and theres no way to stop it.",
+  "message.gather_resource": "Solar Apocalypse is already started! Collect As many resources as possible before sun fries everything!",
+  "message.apocalypsestarted.immidiate": "%1$s just started solar apocalypse! resources are now started to disappear; Good Luck!",
+  "message.nosunlight": "In order to start solar apocalypse, Pandora's lantern must be lit up under direct sunlight!",
+  "message.apocalypse_disabled": "Apocalypse is disabled in config! Apocalypse will NOT begin.",
+  "itemGroup.solarapocalypse": "Solar Apocalypse",
+  "block.solarapocalypse.pandora_totem": "Pandora's Lantern"
 }

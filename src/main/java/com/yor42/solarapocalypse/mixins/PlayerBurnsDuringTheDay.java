@@ -1,8 +1,7 @@
 package com.yor42.solarapocalypse.mixins;
 
-import com.yor42.solarapocalypse.GameRegister;
-import com.yor42.solarapocalypse.MathUtils;
-import com.yor42.solarapocalypse.SolApocalypseConfig;
+import com.yor42.solarapocalypse.gameobjects.GameRegister;
+import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,8 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerBurnsDuringTheDay extends LivingEntity {
-    protected PlayerBurnsDuringTheDay(EntityType<? extends LivingEntity> p_i48577_1_, World p_i48577_2_) {
-        super(p_i48577_1_, p_i48577_2_);
+    protected PlayerBurnsDuringTheDay(EntityType<? extends LivingEntity> type, World worldIn) {
+        super(type, worldIn);
     }
 
     @Shadow
@@ -25,7 +24,7 @@ public abstract class PlayerBurnsDuringTheDay extends LivingEntity {
 
     @Inject(method = "aiStep", at = @At("HEAD"))
     public void onAiStep(CallbackInfo ci) {
-        boolean isDayOldEnough = MathUtils.isWorldOldEnough(this.level, MathUtils.STAGE.STAGE_3);
+        boolean isDayOldEnough = MathUtils.shouldExcuteStage(this.level, MathUtils.STAGE.STAGE_3);
 
         if (isDayOldEnough && isAlive() && !isOnFire() && !this.level.isRaining() && !this.level.isNight() && !this.isCreative() && !this.level.isClientSide() && this.level.canSeeSky(new BlockPos(this.position())) && !hasEffect(GameRegister.SUNSCREEN)) {
             setSecondsOnFire(8);

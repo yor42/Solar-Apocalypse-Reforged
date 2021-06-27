@@ -1,4 +1,13 @@
 {
   "block.solarapocalypse.dust": "잿가루",
-  "effect.solarapocalypse.sunscreen": "자외선 차단"
+  "effect.solarapocalypse.sunscreen": "자외선 차단",
+  "message.apocalypsestarted": "%1$s 님이 방금 솔라 아포칼립스를 발동시켰습니다! 자원이 사라지기 시작할 때 까지 %2$s일 남았습니다. 행운을 빌어요!",
+  "message.apocalypse_already_triggered": "솔라 아포칼립스가 이미 시작되었으며 되돌릴 방법은 없습니다.",
+  "message.gather_resource": "솔라 아포칼립스가 이미 시작되었되었습니다! 태양이 모든 것을 구워 버리기 전에 자원을 최대한 확보하세요!",
+  "message.apocalypsestarted.immidiate": "%1$s 님이 방금 솔라 아포칼립스를 발동시켰으며 자원이 사라지기 시작했습니다. 행운을 빌어요!",
+  "itemGroup.solarapocalypse": "솔라 아포칼립스",
+  "block.solarapocalypse.pandora_totem": "판도라의 등불",
+  "message.nosunlight": "솔라 아포칼립스를 시작하려면 반드시 태양빛 아래서 판도라의 등불에 불을 붙여야 합니다!",
+  "message.apocalypse_disabled": "아포칼립스가 설정에서 꺼져 있습니다! 아무 일도 일어나지 않습니다..."
+
 }

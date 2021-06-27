@@ -1,7 +1,7 @@
 package com.yor42.solarapocalypse.datagen.providers.loottable;
 
 import com.yor42.solarapocalypse.Constants;
-import com.yor42.solarapocalypse.GameRegister;
+import com.yor42.solarapocalypse.gameobjects.GameRegister;
 import net.minecraft.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -12,6 +12,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLootTables {
     @Override
     protected void addTables() {
         this.dropSelf(GameRegister.DUSTBLOCK_REGISTRY.get());
+        this.dropSelf(GameRegister.PANDORAS_TOTEM_REGISTRY.get());
     }
 
     @Override

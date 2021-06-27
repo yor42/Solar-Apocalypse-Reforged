@@ -24,6 +24,7 @@ public class SolApocalypseConfig {
         public final ForgeConfigSpec.DoubleValue STAGE_3;
         public final ForgeConfigSpec.DoubleValue STAGE_3_5;
         public final ForgeConfigSpec.BooleanValue IsWaterfinite;
+        public final ForgeConfigSpec.BooleanValue EnableApocalypse;
         public final ForgeConfigSpec.BooleanValue ApocalypseNow;
 
         private SAModConfig(ForgeConfigSpec.Builder builder) {
@@ -36,7 +37,10 @@ public class SolApocalypseConfig {
             STAGE_3_5 = builder.defineInRange("Days Until Coarse Dirt turns into Sand", -1.0, -1.0, Double.MAX_VALUE);
             builder.pop().push("Misc").comment("Caution! this will turn water into finite resource!");
             IsWaterfinite = builder.define("Turn Infinite water off and water evaporates", false);
-            ApocalypseNow = builder.define("Change this to false to play without apocalypse", true);
+            builder.comment("even if this is set to false  apocalypse can still be started with pandora's lantern.");
+            ApocalypseNow = builder.define("Start Apocalypse as soon as first player joins", true);
+            builder.comment("turns off apocalypse completely. turns pandora's lantern to normal light source");
+            EnableApocalypse = builder.define("Change this to false to play without apocalypse", true);
         }
 
     }

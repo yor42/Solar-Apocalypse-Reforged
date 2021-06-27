@@ -1,6 +1,6 @@
 package com.yor42.solarapocalypse.mixins;
 
-import com.yor42.solarapocalypse.MathUtils;
+import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.util.math.BlockPos;
@@ -16,12 +16,12 @@ import java.util.Random;
 @Mixin(LeavesBlock.class)
 public class LeaveDecay {
     @Inject(method = "isRandomlyTicking", at = @At("HEAD"), cancellable = true)
-    private void onIsRandomlyTicking(BlockState state, CallbackInfoReturnable<Boolean> cir) { cir.setReturnValue(true); }
+    private void onisRandomlyTicking(BlockState state, CallbackInfoReturnable<Boolean> cir) { cir.setReturnValue(true); }
 
     @Inject(method = "randomTick", at = @At("HEAD"))
     private void hookRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         BlockPos blockPos = pos.above();
-        if (!MathUtils.isWorldOldEnough(world, MathUtils.STAGE.STAGE_2) || world.isNight() || world.isRaining() || !world.canSeeSky(blockPos) || !state.getMaterial().isFlammable()) return;
+        if (!MathUtils.shouldExcuteStage(world, MathUtils.STAGE.STAGE_2) || world.isNight() || world.isRaining() || !world.canSeeSky(blockPos) || !state.getMaterial().isFlammable()) return;
         world.removeBlock(pos, false);
     }
 }

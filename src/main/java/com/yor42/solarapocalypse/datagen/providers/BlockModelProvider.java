@@ -1,7 +1,7 @@
 package com.yor42.solarapocalypse.datagen.providers;
 
 import com.yor42.solarapocalypse.Constants;
-import com.yor42.solarapocalypse.GameRegister;
+import com.yor42.solarapocalypse.gameobjects.GameRegister;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
