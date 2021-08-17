@@ -4,7 +4,6 @@ SOLAR APOCALYPSE: REFORGED
 =
 ---
 Unofficial Forge Port of [Solar Apocalypse: Refabricated](https://www.curseforge.com/minecraft/mc-mods/solar-apocalypse-refabricated) <br /><br />
-Classic Solar Apocalypse mod Remake for modern minecraft;<br />
 
 In default setting for the first two days nothing will happen.<br />
 
