@@ -18,4 +18,4 @@ From the seventh day and beyond mobs and players will burn when exposed to dayli
 ---
 
 Use Condition is same with original.<br />
-**Please note that This is not a 1:1 Port of Refabricated with addition of pandora's lantern(Also this doesnt use kotlin); but you can configure mod to make it work in the same way as refabricated.**
+**Please note that This is not a 1:1 Port of Refabricated with addition of pandora's lantern(Also this doesn't use kotlin); but you can configure mod to make it work in the same way as refabricated.**
