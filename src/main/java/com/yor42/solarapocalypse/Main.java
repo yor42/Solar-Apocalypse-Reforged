@@ -1,10 +1,12 @@
 package com.yor42.solarapocalypse;
 
 import com.yor42.solarapocalypse.gameobjects.GameRegister;
+import com.yor42.solarapocalypse.utils.SyncStagePacket;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,6 +21,8 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,12 +30,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.yor42.solarapocalypse.RegisterNetwork.getChannel;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Constants.MODID)
 public class Main
 {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
+    public static final SimpleChannel NETWORK = getChannel();
 
     public static ItemGroup SA_GROUP = new ItemGroup(Constants.MODID) {
         @Override
@@ -87,4 +94,5 @@ public class Main
             LOGGER.info("HELLO from Register Block");
         }
     }
+
 }

@@ -1,5 +1,6 @@
 package com.yor42.solarapocalypse;
 
+import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -13,6 +14,7 @@ public class SolarApocalypseMapData extends WorldSavedData {
 
     private long apocalypseStartedTime;
     private boolean isApocalypseStarted;
+    private MathUtils.STAGE stage;
 
     public SolarApocalypseMapData() {
         super(ID);
@@ -22,6 +24,7 @@ public class SolarApocalypseMapData extends WorldSavedData {
     public void load(CompoundNBT nbt) {
         this.apocalypseStartedTime = nbt.getLong("apocalypse_started_time");
         this.isApocalypseStarted = nbt.getBoolean("is_apocalypse_started");
+
     }
 
     @Override
