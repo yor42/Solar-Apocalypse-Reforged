@@ -45,7 +45,9 @@ public class ForgeEventHandler {
         World world = event.world;
         if(!world.isClientSide() && world.getGameTime()%20 == 0) {
             MathUtils.STAGE stage = MathUtils.getCurrentStage((ServerWorld) world);
-            Main.NETWORK.send(PacketDistributor.ALL.noArg(), new SyncStagePacket(stage));
+            if(stage != null) {
+                Main.NETWORK.send(PacketDistributor.ALL.noArg(), new SyncStagePacket(stage));
+            }
         }
     }
 

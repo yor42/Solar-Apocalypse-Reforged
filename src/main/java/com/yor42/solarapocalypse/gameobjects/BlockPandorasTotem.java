@@ -86,14 +86,15 @@ public class BlockPandorasTotem extends Block {
                 }
             }else {
                 boolean flag = !player.getPersistentData().getBoolean(Constants.MODID+"_sawConfigWarning");
-                if(flag) {
-                    player.sendMessage(new TranslationTextComponent("message.apocalypse_disabled"), player.getUUID());
-                    player.getPersistentData().putBoolean(Constants.MODID+"_sawConfigWarning", true);
-                }
+
                 if (player.isCrouching()) {
                     TileEntity TE = state.hasTileEntity() ? world.getBlockEntity(pos) : null;
                     Block.dropResources(state, world, pos, TE);
                     world.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
+                }
+                else if(flag) {
+                    player.sendMessage(new TranslationTextComponent("message.apocalypse_disabled"), player.getUUID());
+                    player.getPersistentData().putBoolean(Constants.MODID+"_sawConfigWarning", true);
                 }
                 else{
                     world.setBlock(pos, world.getBlockState(pos).setValue(BlockPandorasTotem.ACTIVE, !world.getBlockState(pos).getValue(ACTIVE)), 2);
