@@ -2,10 +2,12 @@ package com.yor42.solarapocalypse.mixins;
 
 import com.yor42.solarapocalypse.utils.MathUtils;
 import com.yor42.solarapocalypse.SolApocalypseConfig;
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -16,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin(AbstractBlock.class)
+@Mixin(BlockBehaviour.class)
 public class BlockModifiedInSunlight {
 
     @Mutable
@@ -27,7 +29,7 @@ public class BlockModifiedInSunlight {
     @Shadow
     protected Material material;
     @Inject(method = "<init>", at = @At("RETURN"))
-    private void onInit(AbstractBlock.Properties properties, CallbackInfo ci) {
+    private void onInit(BlockBehaviour.Properties properties, CallbackInfo ci) {
         if (material.isFlammable()) isRandomlyTicking = true;
     }
 
@@ -37,7 +39,7 @@ public class BlockModifiedInSunlight {
         if (world.isNight() || world.isRaining() || !world.canSeeSky(blockPos)) return;
         if (MathUtils.shouldExcuteStage(world, MathUtils.STAGE.STAGE_2)) {
             if (state.getMaterial().isFlammable() && world.getBlockState(blockPos).isAir()) {
-                BlockState blockState = AbstractFireBlock.getState(world, blockPos);
+                BlockState blockState = BaseFireBlock.getState(world, blockPos);
                 world.setBlock(blockPos, blockState, 2 | 8);
             }
             if (state.getBlock() == Blocks.CLAY) {
@@ -45,7 +47,7 @@ public class BlockModifiedInSunlight {
             } else if (state.getBlock() == Blocks.DIRT) {
                 world.setBlock(pos, Blocks.COARSE_DIRT.defaultBlockState(), 2);
             } else if (state.getBlock() == Blocks.FARMLAND) {
-                FarmlandBlock.turnToDirt(state, world, pos);
+                FarmBlock.turnToDirt(state, world, pos);
             } else if (state.getBlock() instanceof PumpkinBlock) {
                 world.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
             }

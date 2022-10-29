@@ -2,6 +2,7 @@ package com.yor42.solarapocalypse;
 
 import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.nbt.CompoundTag;
@@ -27,10 +28,11 @@ public class SolarApocalypseMapData extends SavedData {
 
 
 
-    public SolarApocalypseMapData load() {
-        this.apocalypseStartedTime = nbt.getLong("apocalypse_started_time");
-        this.isApocalypseStarted = nbt.getBoolean("is_apocalypse_started");
-
+    public static SolarApocalypseMapData load(CompoundTag nbt) {
+        SolarApocalypseMapData data = create();
+        data.apocalypseStartedTime = nbt.getLong("apocalypse_started_time");
+        data.isApocalypseStarted = nbt.getBoolean("is_apocalypse_started");
+        return data;
     }
 
     public void setApocalypseStarted(boolean apocalypseStarted) {
@@ -52,12 +54,7 @@ public class SolarApocalypseMapData extends SavedData {
     }
 
     public static SolarApocalypseMapData getMapdata(ServerLevel world){
-        SolarApocalypseMapData storage = world.getDataStorage().get(SolarApocalypseMapData::new, ID);
-        if(storage == null){
-            storage = new SolarApocalypseMapData();
-            world.getDataStorage().set(storage);
-        }
-        return storage;
+        return world.getServer().overworld().getDataStorage().computeIfAbsent(SolarApocalypseMapData::load, SolarApocalypseMapData::create, ID);
     }
 
     public static void StartApocalypse(ServerLevel world){

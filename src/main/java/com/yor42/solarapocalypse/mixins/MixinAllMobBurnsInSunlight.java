@@ -2,21 +2,22 @@ package com.yor42.solarapocalypse.mixins;
 
 import com.yor42.solarapocalypse.gameobjects.GameRegister;
 import com.yor42.solarapocalypse.utils.MathUtils;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = MobEntity.class, priority = 1001)
+
+@Mixin(value = Mob.class, priority = 1001)
 public abstract class MixinAllMobBurnsInSunlight extends LivingEntity {
 
-    protected MixinAllMobBurnsInSunlight(EntityType<? extends LivingEntity> type, World worldIn) {
+    protected MixinAllMobBurnsInSunlight(EntityType<? extends LivingEntity> type, Level worldIn) {
         super(type, worldIn);
     }
 

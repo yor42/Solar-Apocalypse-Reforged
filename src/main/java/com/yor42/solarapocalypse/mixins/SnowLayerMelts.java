@@ -1,10 +1,10 @@
 package com.yor42.solarapocalypse.mixins;
 
 import com.yor42.solarapocalypse.utils.MathUtils;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SnowBlock;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.SnowLayerBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin(SnowBlock.class)
+@Mixin(SnowLayerBlock.class)
 public class SnowLayerMelts {
 
     @Inject(method = "randomTick", at = @At("HEAD"))

@@ -3,7 +3,9 @@ package com.yor42.solarapocalypse;
 import com.yor42.solarapocalypse.gameobjects.GameRegister;
 import com.yor42.solarapocalypse.utils.MathUtils;
 import com.yor42.solarapocalypse.utils.SyncStagePacket;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
@@ -32,7 +34,7 @@ public class ForgeEventHandler {
         if(!MathUtils.shouldExcuteStage((ServerLevel) player.level, MathUtils.STAGE.STAGE_3) || !player.isAlive() || world.isRaining() || player.isSpectator() || player.isCreative() || world.isNight() || world.isClientSide() || !world.canSeeSky(new BlockPos(player.position())) || player.hasEffect(GameRegister.SUNSCREEN_REGISTRY.get())){
             return;
         }
-        player.addEffect(new EffectInstance(GameRegister.SUNSCREEN_REGISTRY.get(), 2400, 0, false, false, true));
+        player.addEffect(new MobEffectInstance(GameRegister.SUNSCREEN_REGISTRY.get(), 2400, 0, false, false, true));
     }
 
     @SubscribeEvent

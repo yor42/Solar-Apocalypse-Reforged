@@ -1,11 +1,11 @@
 package com.yor42.solarapocalypse.mixins;
 
 import com.yor42.solarapocalypse.utils.MathUtils;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(CropsBlock.class)
+@Mixin(CropBlock.class)
 public abstract class CropDiesInSunlight {
     @Inject(method = "isRandomlyTicking", at = @At("HEAD"), cancellable = true)
     private void onisRandomlyTicking(BlockState state, CallbackInfoReturnable<Boolean> cir) {

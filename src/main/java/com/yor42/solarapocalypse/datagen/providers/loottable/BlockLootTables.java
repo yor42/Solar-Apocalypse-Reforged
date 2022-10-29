@@ -2,12 +2,12 @@ package com.yor42.solarapocalypse.datagen.providers.loottable;
 
 import com.yor42.solarapocalypse.Constants;
 import com.yor42.solarapocalypse.gameobjects.GameRegister;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.stream.Collectors;
 
-public class BlockLootTables extends net.minecraft.data.loot.BlockLootTables {
+public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
     @Override
     protected void addTables() {

@@ -1,7 +1,6 @@
 package com.yor42.solarapocalypse.datagen.providers;
 
 import com.yor42.solarapocalypse.gameobjects.GameRegister;
-import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -16,7 +15,12 @@ public class SARecipeProvider extends RecipeProvider {
         super(p_i48262_1_);
     }
 
+
     @Override
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> p_176532_) {
+        buildShapelessRecipes(p_176532_);
+    }
+
     protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(GameRegister.PANDORAS_TOTEM.asItem())
                 .define('C', Tags.Items.COBBLESTONE)
@@ -25,7 +29,7 @@ public class SARecipeProvider extends RecipeProvider {
                 .pattern("PCP")
                 .pattern("CTC")
                 .pattern("PCP")
-                .unlockedBy("has_torch", (Blocks.TORCH.asItem()))
+                .unlockedBy("has_torch", has(Blocks.TORCH.asItem()))
                 .save(consumer);
     }
 }
