@@ -22,7 +22,7 @@ public class SARecipeProvider extends RecipeProvider {
     }
 
     protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(GameRegister.PANDORAS_TOTEM.asItem())
+        ShapedRecipeBuilder.shaped(GameRegister.PANDORAS_TOTEM_REGISTRY.get().asItem())
                 .define('C', Tags.Items.COBBLESTONE)
                 .define('P', Blocks.OAK_PLANKS.asItem())
                 .define('T', Blocks.TORCH.asItem())

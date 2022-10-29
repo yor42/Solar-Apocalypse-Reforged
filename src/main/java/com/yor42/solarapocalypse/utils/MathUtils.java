@@ -24,7 +24,7 @@ public class MathUtils {
 
     public static boolean shouldExcuteStage(Level world, STAGE stage){
         if(!world.isClientSide()){
-            return shouldExcuteStage(world, stage);
+            return shouldExcuteStage((ServerLevel) world, stage);
         }
         else{
             return false;
@@ -38,20 +38,14 @@ public class MathUtils {
         double apocalypseStartedDay = mapData.getApocalypseStartedDay();
 
         if(!SolApocalypseConfig.CONFIG.ApocalypseNow.get()){
-            if(!(stage.getDays() < 0.0) && SolApocalypseConfig.CONFIG.EnableApocalypse.get() && mapData.isApocalypseStarted() && minecraftDay - apocalypseStartedDay >= stage.getDays()){
-
-                return true;
-            }
+            return !(stage.getDays() < 0.0) && SolApocalypseConfig.CONFIG.EnableApocalypse.get() && mapData.isApocalypseStarted() && minecraftDay - apocalypseStartedDay >= stage.getDays();
         }
         else {
             if(!SolarApocalypseMapData.isApocalypseStarted(world)) {
                 SolarApocalypseMapData.StartApocalypseFronTheBeginning(world);
             }
-            if(!(stage.getDays() < 0.0) && SolApocalypseConfig.CONFIG.EnableApocalypse.get() && minecraftDay >= stage.getDays()){
-                return true;
-            }
+            return !(stage.getDays() < 0.0) && SolApocalypseConfig.CONFIG.EnableApocalypse.get() && minecraftDay >= stage.getDays();
         }
-        return false;
     }
 
     public static STAGE getCurrentStage(ServerLevel world){

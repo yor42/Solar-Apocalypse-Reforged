@@ -1,6 +1,7 @@
 package com.yor42.solarapocalypse.gameobjects;
 
 import com.yor42.solarapocalypse.Constants;
+import com.yor42.solarapocalypse.Main;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -31,22 +32,13 @@ public class GameRegister {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Constants.MODID);
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Constants.MODID);
 
-    public static MobEffect SUNSCREEN = new CustomPotion(MobEffectCategory.BENEFICIAL, 0xffd073){
-    };
-    public static RegistryObject<MobEffect> SUNSCREEN_REGISTRY = EFFECTS.register("sunscreen", ()-> SUNSCREEN);
-
-    public static Block DUSTBLOCK = new FallingBlock(BlockBehaviour.Properties.of(Material.SAND, DyeColor.YELLOW).strength(0.5F).sound(SoundType.SAND));
-    public static RegistryObject<Block> DUSTBLOCK_REGISTRY = register("dust", ()-> DUSTBLOCK, SA_GROUP);
-
-    public static Block PANDORAS_TOTEM = new BlockPandorasTotem(BlockBehaviour.Properties.of(Material.STONE, DyeColor.BLACK).strength(50.0F, 3600000.0F).sound(SoundType.STONE).lightLevel(activeBlockEmission(15)));
+    public static RegistryObject<MobEffect> SUNSCREEN_REGISTRY = EFFECTS.register("sunscreen", ()-> new CustomPotion(MobEffectCategory.BENEFICIAL, 0xffd073));
+    public static RegistryObject<Block> DUSTBLOCK_REGISTRY = register("dust", ()-> new FallingBlock(BlockBehaviour.Properties.of(Material.SAND, DyeColor.YELLOW).strength(0.5F).sound(SoundType.SAND)), SA_GROUP);
+    public static RegistryObject<Block> PANDORAS_TOTEM_REGISTRY = register("pandora_totem", ()-> new BlockPandorasTotem(BlockBehaviour.Properties.of(Material.STONE, DyeColor.BLACK).strength(50.0F, 3600000.0F).sound(SoundType.STONE).lightLevel(activeBlockEmission(15))), SA_GROUP);
 
     private static ToIntFunction<BlockState> activeBlockEmission(int brightness) {
-        return (state) -> {
-            return state.getValue(BlockPandorasTotem.ACTIVE) ? brightness : 0;
-        };
+        return (state) -> state.getValue(BlockPandorasTotem.ACTIVE) ? brightness : 0;
     }
-
-    public static RegistryObject<Block> PANDORAS_TOTEM_REGISTRY = register("pandora_totem", ()-> PANDORAS_TOTEM, SA_GROUP);
 
     public static class CustomPotion extends MobEffect{
         protected CustomPotion(MobEffectCategory effectType, int color) {

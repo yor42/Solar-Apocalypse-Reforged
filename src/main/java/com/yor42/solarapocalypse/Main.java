@@ -1,15 +1,23 @@
 package com.yor42.solarapocalypse;
 
+import com.yor42.solarapocalypse.gameobjects.BlockPandorasTotem;
 import com.yor42.solarapocalypse.gameobjects.GameRegister;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.simple.SimpleChannel;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import static com.yor42.solarapocalypse.RegisterNetwork.getChannel;
 
@@ -17,8 +25,6 @@ import static com.yor42.solarapocalypse.RegisterNetwork.getChannel;
 @Mod(Constants.MODID)
 public class Main
 {
-    // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
     public static final SimpleChannel NETWORK = getChannel();
 
     public static CreativeModeTab SA_GROUP = new CreativeModeTab(Constants.MODID) {
@@ -27,12 +33,10 @@ public class Main
             return new ItemStack(GameRegister.DUSTBLOCK_REGISTRY.get().asItem());
         }
     };
-
     public Main() {
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SolApocalypseConfig.CONFIG_SPEC, "solar_apocalypse.toml");
         MinecraftForge.EVENT_BUS.register(this);
         GameRegister.register();
     }
-
 }

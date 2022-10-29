@@ -26,7 +26,7 @@ public abstract class PlayerBurnsDuringTheDay extends LivingEntity {
     public void onAiStep(CallbackInfo ci) {
         boolean isDayOldEnough = MathUtils.shouldExcuteStage(this.level, MathUtils.STAGE.STAGE_3);
 
-        if (isDayOldEnough && isAlive() && !isOnFire() && !this.level.isRaining() && !this.level.isNight() && !this.isCreative() && !this.level.isClientSide() && this.level.canSeeSky(new BlockPos(this.position())) && !hasEffect(GameRegister.SUNSCREEN)) {
+        if (isDayOldEnough && isAlive() && !isOnFire() && !this.level.isRaining() && !this.level.isNight() && !this.isCreative() && !this.level.isClientSide() && this.level.canSeeSky(new BlockPos(this.position())) && !hasEffect(GameRegister.SUNSCREEN_REGISTRY.get())) {
             setSecondsOnFire(8);
         }
     }

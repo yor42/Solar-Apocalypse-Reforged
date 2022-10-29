@@ -23,7 +23,7 @@ public abstract class MixinAllMobBurnsInSunlight extends LivingEntity {
 
     @Inject(method = "isSunBurnTick", at = @At("RETURN"), cancellable = true)
     private void onisSunBurnTick(CallbackInfoReturnable<Boolean> cir) {
-        if (MathUtils.shouldExcuteStage(this.level , MathUtils.STAGE.STAGE_3) && isAlive() && !isOnFire() && !this.level.isRaining() && !this.level.isNight() && !this.level.isClientSide() && this.level.canSeeSky(new BlockPos(this.position())) && !hasEffect(GameRegister.SUNSCREEN)) {
+        if (MathUtils.shouldExcuteStage(this.level , MathUtils.STAGE.STAGE_3) && isAlive() && !isOnFire() && !this.level.isRaining() && !this.level.isNight() && !this.level.isClientSide() && this.level.canSeeSky(new BlockPos(this.position())) && !hasEffect(GameRegister.SUNSCREEN_REGISTRY.get())) {
             cir.setReturnValue(true);;
         }
     }
@@ -33,7 +33,7 @@ public abstract class MixinAllMobBurnsInSunlight extends LivingEntity {
 
         boolean isDayOldEnough = MathUtils.shouldExcuteStage(this.level, MathUtils.STAGE.STAGE_3);
 
-        if (isDayOldEnough && isAlive() && !isOnFire() && !this.level.isRaining() && !this.level.isNight() && !this.level.isClientSide() && this.level.canSeeSky(new BlockPos(this.position())) && !hasEffect(GameRegister.SUNSCREEN)) {
+        if (isDayOldEnough && isAlive() && !isOnFire() && !this.level.isRaining() && !this.level.isNight() && !this.level.isClientSide() && this.level.canSeeSky(new BlockPos(this.position())) && !hasEffect(GameRegister.SUNSCREEN_REGISTRY.get())) {
             setSecondsOnFire(8);
         }
     }
