@@ -2,7 +2,6 @@ package com.yor42.solarapocalypse.mixins;
 
 import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.SpreadingSnowyDirtBlock;

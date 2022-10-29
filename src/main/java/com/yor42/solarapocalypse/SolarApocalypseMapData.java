@@ -2,10 +2,8 @@ package com.yor42.solarapocalypse;
 
 import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
-import net.minecraft.nbt.CompoundTag;
 
 public class SolarApocalypseMapData extends SavedData {
 

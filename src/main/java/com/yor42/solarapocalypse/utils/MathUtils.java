@@ -1,13 +1,11 @@
 package com.yor42.solarapocalypse.utils;
 
 import com.yor42.solarapocalypse.Constants;
-import com.yor42.solarapocalypse.Main;
 import com.yor42.solarapocalypse.SolApocalypseConfig;
 import com.yor42.solarapocalypse.SolarApocalypseMapData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

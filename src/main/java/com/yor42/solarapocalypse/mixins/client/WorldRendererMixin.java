@@ -2,7 +2,6 @@ package com.yor42.solarapocalypse.mixins.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Matrix4f;
-import com.yor42.solarapocalypse.Constants;
 import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.LevelRenderer;

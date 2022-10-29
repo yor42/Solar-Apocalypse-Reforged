@@ -1,7 +1,7 @@
 package com.yor42.solarapocalypse.mixins;
 
-import com.yor42.solarapocalypse.utils.MathUtils;
 import com.yor42.solarapocalypse.SolApocalypseConfig;
+import com.yor42.solarapocalypse.utils.MathUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
