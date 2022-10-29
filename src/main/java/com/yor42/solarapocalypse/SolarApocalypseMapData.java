@@ -1,14 +1,12 @@
 package com.yor42.solarapocalypse;
 
 import com.yor42.solarapocalypse.utils.MathUtils;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.DimensionSavedDataManager;
-import net.minecraft.world.storage.MapData;
-import net.minecraft.world.storage.WorldSavedData;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.saveddata.SavedData;
+import net.minecraft.nbt.CompoundTag;
 
-public class SolarApocalypseMapData extends WorldSavedData {
+public class SolarApocalypseMapData extends SavedData {
 
     private static final String ID = Constants.MODID+"_worlddata";
 
@@ -16,22 +14,23 @@ public class SolarApocalypseMapData extends WorldSavedData {
     private boolean isApocalypseStarted;
     private MathUtils.STAGE stage;
 
-    public SolarApocalypseMapData() {
-        super(ID);
+    public static SolarApocalypseMapData create(){
+        return new SolarApocalypseMapData();
     }
 
     @Override
-    public void load(CompoundNBT nbt) {
-        this.apocalypseStartedTime = nbt.getLong("apocalypse_started_time");
-        this.isApocalypseStarted = nbt.getBoolean("is_apocalypse_started");
-
-    }
-
-    @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         compound.putLong("apocalypse_started_time", this.apocalypseStartedTime);
         compound.putBoolean("is_apocalypse_started", this.isApocalypseStarted);
         return compound;
+    }
+
+
+
+    public SolarApocalypseMapData load() {
+        this.apocalypseStartedTime = nbt.getLong("apocalypse_started_time");
+        this.isApocalypseStarted = nbt.getBoolean("is_apocalypse_started");
+
     }
 
     public void setApocalypseStarted(boolean apocalypseStarted) {
@@ -52,7 +51,7 @@ public class SolarApocalypseMapData extends WorldSavedData {
         return (float) this.apocalypseStartedTime/24000;
     }
 
-    public static SolarApocalypseMapData getMapdata(ServerWorld world){
+    public static SolarApocalypseMapData getMapdata(ServerLevel world){
         SolarApocalypseMapData storage = world.getDataStorage().get(SolarApocalypseMapData::new, ID);
         if(storage == null){
             storage = new SolarApocalypseMapData();
@@ -61,19 +60,19 @@ public class SolarApocalypseMapData extends WorldSavedData {
         return storage;
     }
 
-    public static void StartApocalypse(ServerWorld world){
+    public static void StartApocalypse(ServerLevel world){
         SolarApocalypseMapData mapdata = getMapdata(world);
         mapdata.setApocalypseStarted(true);
         mapdata.setApocalypseStartedTime(world.getDayTime());
     }
 
-    public static void StartApocalypseFronTheBeginning(ServerWorld world){
+    public static void StartApocalypseFronTheBeginning(ServerLevel world){
         SolarApocalypseMapData mapdata = getMapdata(world);
         mapdata.setApocalypseStarted(true);
         mapdata.setApocalypseStartedTime(0);
     }
 
-    public static boolean isApocalypseStarted(ServerWorld world){
+    public static boolean isApocalypseStarted(ServerLevel world){
         SolarApocalypseMapData mapdata = getMapdata(world);
         return mapdata.isApocalypseStarted();
     }

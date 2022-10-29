@@ -5,7 +5,7 @@ import com.yor42.solarapocalypse.SolApocalypseConfig;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -32,7 +32,7 @@ public class BlockModifiedInSunlight {
     }
 
     @Inject(method = "randomTick", at = @At("HEAD"))
-    private void onRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci){
+    private void onRandomTick(BlockState state, ServerLevel world, BlockPos pos, Random random, CallbackInfo ci){
         BlockPos blockPos = pos.above();
         if (world.isNight() || world.isRaining() || !world.canSeeSky(blockPos)) return;
         if (MathUtils.shouldExcuteStage(world, MathUtils.STAGE.STAGE_2)) {

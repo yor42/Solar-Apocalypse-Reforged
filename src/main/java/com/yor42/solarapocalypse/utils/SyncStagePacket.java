@@ -1,17 +1,11 @@
 package com.yor42.solarapocalypse.utils;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
-
-import static net.minecraft.entity.ai.brain.memory.MemoryModuleType.HOME;
 
 public class SyncStagePacket {
     private final MathUtils.STAGE stage;
@@ -20,12 +14,12 @@ public class SyncStagePacket {
         this.stage = stage;
     }
 
-    public static SyncStagePacket decode (final PacketBuffer buffer){
+    public static SyncStagePacket decode (final FriendlyByteBuf buffer){
         final MathUtils.STAGE stage = buffer.readEnum(MathUtils.STAGE.class);
         return new SyncStagePacket(stage);
     }
 
-    public static void encode(final SyncStagePacket msg, final PacketBuffer buffer){
+    public static void encode(final SyncStagePacket msg, final FriendlyByteBuf buffer){
         buffer.writeEnum(msg.stage);
     }
 

@@ -4,9 +4,11 @@ import com.yor42.solarapocalypse.Constants;
 import com.yor42.solarapocalypse.Main;
 import com.yor42.solarapocalypse.SolApocalypseConfig;
 import com.yor42.solarapocalypse.SolarApocalypseMapData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.PacketDistributor;
@@ -22,16 +24,16 @@ public class MathUtils {
     private static STAGE laststage = null;
 
 
-    public static boolean shouldExcuteStage(World world, STAGE stage){
+    public static boolean shouldExcuteStage(Level world, STAGE stage){
         if(!world.isClientSide()){
-            return shouldExcuteStage((ServerWorld) world, stage);
+            return shouldExcuteStage(world, stage);
         }
         else{
             return false;
         }
     }
 
-    public static boolean shouldExcuteStage(ServerWorld world, STAGE stage){
+    public static boolean shouldExcuteStage(ServerLevel world, STAGE stage){
         double minecraftDay = (double) world.getDayTime()/24000;
 
         SolarApocalypseMapData mapData = SolarApocalypseMapData.getMapdata(world);
@@ -54,7 +56,7 @@ public class MathUtils {
         return false;
     }
 
-    public static STAGE getCurrentStage(ServerWorld world){
+    public static STAGE getCurrentStage(ServerLevel world){
 
         for(int i = STAGE.values().length-1; i>=0; i--){
             STAGE stage = STAGE.values()[i];

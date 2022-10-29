@@ -3,7 +3,7 @@ package com.yor42.solarapocalypse.datagen;
 import com.yor42.solarapocalypse.Constants;
 import com.yor42.solarapocalypse.datagen.providers.BlockModelProvider;
 import com.yor42.solarapocalypse.datagen.providers.ItemModelProvider;
-import com.yor42.solarapocalypse.datagen.providers.RecipeProvider;
+import com.yor42.solarapocalypse.datagen.providers.SARecipeProvider;
 import com.yor42.solarapocalypse.datagen.providers.loottable.LootTableProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,7 +21,7 @@ public class DataGenerator {
         gen.addProvider(new BlockModelProvider(gen, filehelper));
         gen.addProvider(new ItemModelProvider(gen, filehelper));
         gen.addProvider(new LootTableProvider(gen));
-        gen.addProvider(new RecipeProvider(gen));
+        gen.addProvider(new SARecipeProvider(gen));
     }
 
 }
